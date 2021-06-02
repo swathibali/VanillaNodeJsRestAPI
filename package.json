@@ -1,0 +1,26 @@
+{
+  "name": "vanilla-node-rest-api",
+  "version": "1.0.0",
+  "description": "Nodejs Rest Api with no framework",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swathibali/VanillaNodeJsRestAPI.git"
+  },
+  "author": "Swathi Bali",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/swathibali/VanillaNodeJsRestAPI/issues"
+  },
+  "homepage": "https://github.com/swathibali/VanillaNodeJsRestAPI#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
+}
