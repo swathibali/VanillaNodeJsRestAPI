@@ -1,6 +1,6 @@
 const http = require('http');
 const products = require('./data/products')
-const {getProducts,getProduct,createProduct} = require('./controllers/productController')
+const { getProducts,getProduct,createProduct,updateProduct,deleteProduct } = require('./controllers/productController')
 
 const server = http.createServer((req,res) =>{
 
@@ -8,13 +8,24 @@ const server = http.createServer((req,res) =>{
 
         getProducts(req,res)
 
-    } else if(req.url.match(/\/api\/products\/([0-9]+)/)){
+    } else if(req.url.match(/\/api\/products\/[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}/) && req.method === 'GET'){
 
         const id = req.url.split('/')[3]   // api/products/1
         getProduct(req,res,id)
 
     } else if(req.url === '/api/products' && req.method === 'POST'){
+
         createProduct(req,res);
+        
+    } else if(req.url.match(/\/api\/products\/[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}/) && req.method === 'PUT'){
+        
+        const id = req.url.split('/')[3]; 
+        updateProduct(req,res,id);
+
+    }else if(req.url.match(/\/api\/products\/[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}/) && req.method === 'DELETE'){
+        
+        const id = req.url.split('/')[3]; 
+        deleteProduct(req,res,id);
     }
     else{
 
@@ -25,7 +36,6 @@ const server = http.createServer((req,res) =>{
 
 });
 const PORT = process.env.PORT ||5000;
-
 server.listen(PORT, () =>{
     console.log(`Server running on port ${PORT}`)
 });
